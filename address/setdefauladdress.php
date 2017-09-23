@@ -1,38 +1,38 @@
-<?php 
+ï»¿<?php 
     require_once "../sql.phpHelper.class.php";
     header("Content-type: text/html; charset=utf-8");
-    //Ö¸¶¨ÔÊÐíÆäËûÓòÃû·ÃÎÊ
+    //æŒ‡å®šå…è®¸å…¶ä»–åŸŸåè®¿é—®
     header('Access-Control-Allow-Origin:http://abc.cn');
-    //ÏàÓ¦ÀàÐÍ
+    //ç›¸åº”ç±»åž‹
     header('Access-Control-Allow-Methods:POST,GET');
-    //ÏàÓ¦Í·ÉèÖÃ£¬ÔÊÐíÉèÖÃtokenÒ»¸öhttpÍ·
+    //ç›¸åº”å¤´è®¾ç½®ï¼Œå…è®¸è®¾ç½®tokenä¸€ä¸ªhttpå¤´
     header('Access-Control-Allow-Headers:token');
-    //»ñÈ¡httpÇëÇóÍ·
+    //èŽ·å–httpè¯·æ±‚å¤´
     $header = apache_request_headers();
     $token = $header['token'];
     $id = $_POST['id'];
     $defaul = $_POST['defaul'];
-    //³õÊ¼»¯Ä¬ÈÏµØÖ·
+    //åˆå§‹åŒ–é»˜è®¤åœ°å€
     $sql0 = "update address set defaul ='0' where user_id = '$token'";
-    //ÐÞ¸ÄÄ¬ÈÏµØÖ·
+    //ä¿®æ”¹é»˜è®¤åœ°å€
     $sql = "update address set defaul ='$defaul' where user_id = '$token' and id = '$id'";
     $sqlHelper = new SqlHelper();
     $res0 = $sqlHelper->execute_dql($sql0);
     $res = $sqlHelper->execute_dql($sql);
-    if($res){
-        $arr[
+    if(mysql_affected_rows() > 0){
+        $arr = [
             'status'=>true,
-            'msg'=>'ÉèÖÃ³É¹¦'
+            'msg'=>'è®¾ç½®æˆåŠŸ'
         ];
         echo json_encode($arr);
     }else{
         $arr = [
             'status'=>false,
-            'msg'=>'ÉèÖÃÊ§°Ü'
+            'msg'=>'è®¾ç½®å¤±è´¥'
         ];
         echo json_encode($arr);
     }
-    $sqlHelper->close_content();
+    $sqlHelper->close_connect();
 
 
 

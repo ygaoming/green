@@ -1,10 +1,10 @@
-<?php 
+ï»¿<?php 
 function uuid() {
     if (function_exists ( 'com_create_guid' )) {
         return com_create_guid ();
     } else {
-        mt_srand ( ( double ) microtime () * 10000 ); //optional for php 4.2.0 and up.Ëæ±ãÊý²¥ÖÖ£¬4.2.0ÒÔºó²»ÐèÒªÁË¡£
-        $charid = strtoupper ( md5 ( uniqid ( rand (), true ) ) ); //¸ù¾Ýµ±Ç°Ê±¼ä£¨Î¢Ãë¼Æ£©Éú³ÉÎ¨Ò»id.
+        mt_srand ( ( double ) microtime () * 10000 ); //optional for php 4.2.0 and up.éšä¾¿æ•°æ’­ç§ï¼Œ4.2.0ä»¥åŽä¸éœ€è¦äº†ã€‚
+        $charid = strtoupper ( md5 ( uniqid ( rand (), true ) ) ); //æ ¹æ®å½“å‰æ—¶é—´ï¼ˆå¾®ç§’è®¡ï¼‰ç”Ÿæˆå”¯ä¸€id.
         $hyphen = chr ( 45 ); // "-"
         $uuid = '' . //chr(123)// "{"
 substr ( $charid, 0, 8 ) . $hyphen . substr ( $charid, 8, 4 ) . $hyphen . substr ( $charid, 12, 4 ) . $hyphen . substr ( $charid, 16, 4 ) . $hyphen . substr ( $charid, 20, 12 );

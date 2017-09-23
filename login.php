@@ -11,7 +11,7 @@ require_once 'sql.phpHelper.class.php';
     if($row['loginpwd'] == $loginpwd){
         $arr = [
                 'status'=>true,
-                'token'=>$row['id'],
+                'id'=>$row['id'],
                 'msg'=>'登录成功'
            ];
             foreach($arr as $key => $value) {
